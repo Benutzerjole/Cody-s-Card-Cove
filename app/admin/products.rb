@@ -5,7 +5,30 @@ ActiveAdmin.register Product do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :description, :base_price, :sale_price, :quantity_in_stock, :category_id
+  permit_params :name, :description, :base_price, :sale_price, :quantity_in_stock, :category_id, :image
+
+  form do |f|
+    f.semantic_errors
+    f.inputs
+    f.inputs do
+      f.input :image, as: :file, hint: f.object.image.present? ? image_tag(f.object.image) : ""
+    end
+    f.actions
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :category_id
+      row :description
+      row :base_price
+      row :sale_price
+      row :image do |ad|
+        image_tag ad.image
+      end
+    end
+    active_admin_comments
+  end
   #
   # or
   #
