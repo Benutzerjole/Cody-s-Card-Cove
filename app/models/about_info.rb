@@ -1,0 +1,2 @@
+class AboutInfo < ApplicationRecord
+end

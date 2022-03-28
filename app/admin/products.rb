@@ -7,6 +7,8 @@ ActiveAdmin.register Product do
   #
   permit_params :name, :description, :base_price, :sale_price, :quantity_in_stock, :category_id, :image
 
+  menu priority: 2
+
   form do |f|
     f.semantic_errors
     f.inputs
