@@ -1,8 +1,17 @@
-<div class="card my-4 mr-4" style="width: 16rem; font-size: 15px;">
-  <h3 class="p-3"><%= product.name %></h3>
+<a href="products/<%= product.id %>">
+  <div class="card my-4 mr-4" style="width: 16rem; font-size: 15px;">
+  <h3 class="p-3 text-center"><%= product.name %></h3>
   <p class="card-text text-center"><strong>Category:</strong> <%= product.category.name %></p>
   <%= image_tag(product.image, alt: product.name, class: "card-img-top", style: "height: 16rem;" ) %>
-  <div class="card-body mt-4">
-    <p class="card-text text-right">$<%= product.base_price %></p>
+  <div class="card-body mt-4">  
+    <p class="card-text text-right">
+      <% if product.sale_price %>
+        <span class="text-danger"><s>$<%= product.base_price %></s></span>
+        <span>$<%= product.sale_price %></span>
+      <% else %>
+        <span>$<%= product.base_price %></span>
+      <% end %>
+    </p>
   </div>
-</div>
+  </div>
+</a>

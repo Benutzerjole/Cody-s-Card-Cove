@@ -1,0 +1,15 @@
+<div class="container text-light my-5" style="font-size: 18px;">
+  
+  <h2 class="text-center text-light"><%= @product.name %></h1>
+  <h4 class="text-center text-light">Category: <%= @product.category.name %></h3>
+
+  <%= image_tag(@product.image, alt: @product.name, class: "mx-auto d-block my-5") %>
+
+  <p><%= @product.description %></p>
+  <p>Base Price: <%= @product.base_price %></p>
+  <p>Sale Price: <%= @product.sale_price %></p>
+  <p>Quantity In Stock: <%= @product.quantity_in_stock %></p>
+
+  <%= link_to "Return to Products", products_path, class: "btn btn-primary text-light" %>
+
+</div>
