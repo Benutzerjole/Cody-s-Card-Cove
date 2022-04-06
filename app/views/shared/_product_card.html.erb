@@ -2,7 +2,11 @@
   <div class="card my-4 mr-4" style="width: 16rem; font-size: 15px;">
   <h3 class="p-3 text-center"><%= product.name %></h3>
   <p class="card-text text-center"><strong>Category:</strong> <%= product.category.name %></p>
-  <%= image_tag(product.image, alt: product.name, class: "card-img-top", style: "height: 16rem;" ) %>
+  <% if product.image.present? %>
+    <%= image_tag(product.image, alt: product.name, class: "card-img-top", style: "height: 16rem;" ) %>
+  <% else %>
+    <%= image_tag "No_Image_Available.jpg" %>
+  <% end %>
   <div class="card-body mt-4">  
     <p class="card-text text-right">
       <% if product.sale_price %>
