@@ -18,9 +18,9 @@
     <div class="my-2">
       <%= form.label :filter, "Filter:", class: "mx-0", style: "width: 8rem" %>
       <select name="filter" id="filter" class="w-75" %>
-        <option>All</option>
+        <option>None</option>
         <option>On Sale</option>
-        <option>New</option>
+        <option>Recently Updated</option>
       </select>
     </div>
 
@@ -31,10 +31,37 @@
   <% end %>
 </div>
 
+<div class="row mt-5 mb-1 justify-content-center">
+  <h2 class="text-light">
+    Displaying 
+    <% if params[:category] && params[:category] != "All"%>
+      <%= @categories.find(params[:category].to_i).name %>
+    <% end %>
+    products
+    <% if params[:search] && params[:search] != ""%>
+      <%= " that contain '#{params[:search]}'"%>
+    <% end %>
+    <% if params[:filter] && params[:filter] != "None"%>
+      <%= "filtered by #{params[:search]}"%>
+    <% end %>
+    
+  </h2>
+</div>
+
 <div class="row mt-3">
   <div class="d-flex flex-wrap p-0 align-items-center" style="list-style: none;">
     <% @products.each do |product| %>
       <%= render partial: "shared/product_card", locals: {product: product} %>
     <% end %>
   </div>    
+</div>
+
+<div class="row justify-content-center mb-3">
+  <% (1..@pages).each do |i| %>
+    <% if i == params[:page].to_i%>
+      <%= link_to "#{i}", request.params.merge(page: "#{i}"), class:"btn btn-light disabled mx-1" %>
+    <% else %>
+      <%= link_to "#{i}", request.params.merge(page: "#{i}"), class:"btn btn-light mx-1" %>
+    <% end %>
+  <% end %>       
 </div>
