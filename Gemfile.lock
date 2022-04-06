@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: 91950218dd39119e420ca431fc9fae09b53986c7
+  branch: master
+  specs:
+    faker (2.20.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -295,6 +303,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  faker!
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
