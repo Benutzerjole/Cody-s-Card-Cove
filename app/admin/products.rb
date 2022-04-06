@@ -26,7 +26,7 @@ ActiveAdmin.register Product do
       row :base_price
       row :sale_price
       row :image do |ad|
-        image_tag ad.image
+        ad.image.present? ? image_tag(ad.image) : ""
       end
     end
     active_admin_comments
