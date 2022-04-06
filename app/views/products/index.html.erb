@@ -20,7 +20,7 @@
       <select name="filter" id="filter" class="w-75" %>
         <option>None</option>
         <option>On Sale</option>
-        <option>Recently Updated</option>
+        <option>New Products</option>
       </select>
     </div>
 
@@ -42,7 +42,7 @@
       <%= " that contain '#{params[:search]}'"%>
     <% end %>
     <% if params[:filter] && params[:filter] != "None"%>
-      <%= "filtered by #{params[:search]}"%>
+      <%= "filtered by #{params[:filter]}"%>
     <% end %>
     
   </h2>
