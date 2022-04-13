@@ -12,6 +12,7 @@ require 'faker'
 AdminUser.destroy_all
 Product.destroy_all
 Category.destroy_all
+Province.destroy_all
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
@@ -33,3 +34,17 @@ categories.each do |category|
     Product.create(name: key, description: value['description'], base_price: value['price'], quantity_in_stock: Faker::Number.between(from: 0, to: 100), category: current_category)
   end
 end
+
+Province.create(name: "British Columbia")
+Province.create(name: "Alberta")
+Province.create(name: "Saskatchewan")
+Province.create(name: "Manitoba")
+Province.create(name: "Ontario")
+Province.create(name: "Quebec")
+Province.create(name: "Newfoundland and Labrador")
+Province.create(name: "Nova Scotia")
+Province.create(name: "New Brunswick")
+Province.create(name: "Prince Edward Island")
+Province.create(name: "Yukon")
+Province.create(name: "Northwest Territories")
+Province.create(name: "Nunavut")
