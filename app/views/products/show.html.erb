@@ -14,6 +14,7 @@
   <p>Sale Price: <%= @product.sale_price %></p>
   <p>Quantity In Stock: <%= @product.quantity_in_stock %></p>
 
-  <%= link_to "Return to Products", products_path, class: "btn btn-primary text-light" %>
+  <%= button_to 'Add to Cart', add_to_cart_path(@product.id), method: :post %>
+  <%= button_to "Return to Products", products_path, method: :get %>
 
 </div>

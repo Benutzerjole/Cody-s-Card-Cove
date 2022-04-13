@@ -1,0 +1,52 @@
+<div class="container">
+  <h1 class="text-light">Shopping Cart</h1>
+
+  <% if @cart.empty? %>
+    <h2>No items in cart</h2>
+  <% else %>
+    <% total = 0%>
+    
+    <ul class="text-dark" style="list-style: none;">
+      <% @cart.each do |product|%>
+        <li class="bg-light border-dark p-2 my-3">
+          <% current_product = Product.find(product[0])%>
+          <div class="h4">
+            <%= current_product.name %>     
+          </div>
+
+          <div class="h5">
+            <% if current_product.sale_price %>
+              Price Per Item: $<%= current_product.sale_price %>
+              <% total += current_product.sale_price*product[1]%>
+            <% else %>
+              Price Per Item: $<%= current_product.base_price %>
+              <% total += current_product.base_price*product[1]%>
+            <% end %>
+          </div>
+        
+
+          <div>
+            <%= form_with url: modify_cart_quantity_path(product[0]), method: :post do |form|%>  
+              
+              <div class="my-2">
+                <%= form.label :quantity, "Product Quantity:"%>
+                <%= form.text_field :quantity, value: product[1], style: "width: 3rem; text-align: right;" %>
+                <%= form.submit "Modify Quantity" %> 
+              </div>
+
+            <% end %>
+          </div>
+
+          <div class="my-3">
+            <%= button_to 'Remove From Cart', remove_from_cart_path(product[0]), method: :delete %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+    <h3 class="text-light">Current Order Sub-Total: $<%= sprintf('%.2f', total) %></h3>
+  <% end %>
+</div>
+
+
+
