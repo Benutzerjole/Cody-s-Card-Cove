@@ -23,7 +23,6 @@
               <% total += current_product.base_price*product[1]%>
             <% end %>
           </div>
-        
 
           <div>
             <%= form_with url: modify_cart_quantity_path(product[0]), method: :post do |form|%>  
@@ -34,6 +33,14 @@
                 <%= form.submit "Modify Quantity" %> 
               </div>
 
+            <% end %>
+          </div>
+
+          <div class="h5">
+            <% if current_product.sale_price %>
+              Price For All: $<%= sprintf('%.2f', current_product.sale_price * product[1])%>
+            <% else %>
+              Price For All: $<%= sprintf('%.2f', current_product.base_price * product[1]) %>
             <% end %>
           </div>
 
