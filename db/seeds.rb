@@ -9,6 +9,7 @@
 require 'json'
 require 'faker'
 
+User.destroy_all
 AdminUser.destroy_all
 Product.destroy_all
 Category.destroy_all
