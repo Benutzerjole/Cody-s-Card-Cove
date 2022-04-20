@@ -1,0 +1,58 @@
+<div class="container">
+  
+  <h1>Confirm Order Details</h1>
+
+  <% if @cart.empty? %>
+    <h2 class="text-light">No items in cart</h2>
+  <% else %>
+    <% sub_total = 0%>
+
+    <ul class="text-dark" style="list-style: none;">
+      <% @cart.each do |product|%>
+        <li class="bg-light border-dark p-2 my-3">
+        
+          <% current_product = Product.find(product[0])%>
+          
+          <% if current_product.sale_price %>
+            <% price = current_product.sale_price %>
+          <% else %>
+            <% price =  current_product.base_price %>
+          <% end %>
+          
+          <div class="h4">
+            <%= product[1] %>x <%= current_product.name %> at $<%= price %> each 
+            <% sub_total += price*product[1]%>    
+          </div>
+
+          <div class="h4">
+            <% if current_product.sale_price %>
+              $<%= sprintf('%.2f', current_product.sale_price * product[1])%>
+            <% else %>
+              $<%= sprintf('%.2f', current_product.base_price * product[1]) %>
+            <% end %>
+          </div>
+
+        </li>
+      <% end %>
+    </ul>
+
+    <h2>Address Details</h2>
+    <ul class="text-light h5 mb-5 p-0" style="list-style: none;">
+      <li>Address: <%= @address_details[:address] %></li>
+      <li>Province: <%= @province.name %></li>
+      <li>City: <%= @address_details[:city] %></li>
+      <li>Zip Code: <%= @address_details[:zip_code] %></li>
+    </ul>
+
+    <h3 class="text-light">Sub-Total: $<%= sprintf('%.2f', sub_total) %></h3>
+    <h3 class="text-light">PST: $<%= sprintf('%.2f', sub_total*@province.pst) %></h3>
+    <h3 class="text-light">GST: $<%= sprintf('%.2f', sub_total*@province.gst) %></h3>
+    <h3 class="text-light">HST: $<%= sprintf('%.2f', sub_total*@province.hst) %></h3>
+    <h3 class="text-light">Total: $<%= sprintf('%.2f', sub_total + (1 + sub_total*@province.pst + sub_total*@province.gst + sub_total*@province.hst)) %></h3>
+
+    <%= button_to 'Place Order', invoice_path, method: :get %>
+    <%= button_to 'Return to Cart', cart_path, method: :get %>
+  <% end %>
+
+
+</div>

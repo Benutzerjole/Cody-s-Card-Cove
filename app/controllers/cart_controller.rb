@@ -4,6 +4,7 @@ class CartController < ApplicationController
 
   def index
     @cart = session[:cart]
+    @provinces = Province.all
   end
 
   def add_to_cart

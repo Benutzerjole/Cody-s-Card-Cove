@@ -52,6 +52,42 @@
     </ul>
 
     <h3 class="text-light">Current Order Sub-Total: $<%= sprintf('%.2f', total) %></h3>
+
+    <div class="" style="font-size: 15px;">
+      <%= form_with url: "/invoice", method: :get do |form|%>  
+        
+        <div class="my-2">
+          <%= form.label :address, "Address:", class: "mx-0", style: "width: 8rem" %>
+          <%= form.text_field :address, class: "w-75", value: current_user.address %>
+        </div>
+
+        <div class="my-2">
+          <%= form.label :category, "Province:", class: "mx-0", style: "width: 8rem" %>
+          <select name="Province" id="province" class="w-75" %>
+            <% @provinces.each do |province| %>
+              <option value="<%= province.id %>" <% if current_user.province_id == province.id %> selected <% end %>><%= province.name %></option>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="my-2">
+          <%= form.label :city, "City:", class: "mx-0", style: "width: 8rem" %>
+          <%= form.text_field :city, class: "w-75", value: current_user.city %>
+        </div>
+
+        <div class="my-2">
+          <%= form.label :zip_code, "Zip Code:", class: "mx-0", style: "width: 8rem" %>
+          <%= form.text_field :zip_code, class: "w-75", value: current_user.zip_code %>
+        </div>
+
+        <div class="">
+          <%= button_to 'Continue to Order', invoice_path, method: :get %> 
+        </div>
+
+      <% end %>
+    </div>
+
+    <%= button_to 'Keep Shopping', products_path, method: :get %>
   <% end %>
 </div>
 
