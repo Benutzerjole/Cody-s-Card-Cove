@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'cart', to: "cart#index", as: "cart"
   get "invoice", to: 'order#invoice', as: "invoice"
 
+  post "invoice/place_order", to: 'order#place_order', as: 'place_order'
   post 'cart/add_to_cart/:id', to: 'cart#add_to_cart', as: 'add_to_cart'
   post 'cart/modify_cart_quantity/:id', to: 'cart#modify_cart_quantity', as: 'modify_cart_quantity'
   delete 'cart/remove_from_cart/:id', to: 'cart#remove_from_cart', as: 'remove_from_cart'
