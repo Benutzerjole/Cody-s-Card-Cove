@@ -1,0 +1,39 @@
+<h1>Displaying order with id #<%= @order.id %></h1>
+
+<% sub_total = 0%>
+
+<ul class="text-dark" style="list-style: none;">
+  <% @order.order_products.each do |order_product|%>
+    <li class="bg-light border-dark p-2 my-3">
+    
+      <% current_product = order_product.product%>
+      
+      <div class="h4">
+        <%= order_product.quantity %>x <%= current_product.name %> at $<%= order_product.price %> each 
+        <% sub_total += order_product.price*order_product.quantity%>    
+      </div>
+
+      <div class="h4">
+        $<%= sprintf('%.2f', order_product.price * order_product.quantity)%>
+      </div>
+
+    </li>
+  <% end %>
+</ul>
+
+<h3 class="text-light">Sub-Total: $<%= sprintf('%.2f', sub_total) %></h3>
+<h3 class="text-light">PST: $<%= sprintf('%.2f', sub_total*@order.pst) %></h3>
+<h3 class="text-light">GST: $<%= sprintf('%.2f', sub_total*@order.gst) %></h3>
+<h3 class="text-light">HST: $<%= sprintf('%.2f', sub_total*@order.hst) %></h3>
+<h3 class="text-light">Total: $<%= sprintf('%.2f', sub_total + (1 + sub_total*@order.pst + sub_total*@order.gst + sub_total*@order.hst)) %></h3>
+
+<h2>Address Details</h2>
+<ul class="text-light h5 mb-5 p-0" style="list-style: none;">
+  <li>Address: <%= @order.address %></li>
+  <li>Province: <%= @order.province.name %></li>
+  <li>City: <%= @order.city %></li>
+  <li>Zip Code: <%= @order.zip_code %></li>
+</ul>
+
+
+<%= button_to 'Return to Order History', order_path, method: :get %>

@@ -1,1 +1,15 @@
 <h1>Order History</h1>
+
+<ul class="text-dark" style="list-style: none;">
+  <% @orders.each do |order|%>
+    <li class="bg-light border-dark p-2 my-3">
+      
+      <a href="/order/<%= order.id %>">
+        <div class="h4">
+          Order with id #<%= order.id %>
+        </div>    
+      </a>
+      
+    </li>
+  <% end %>
+</ul>
