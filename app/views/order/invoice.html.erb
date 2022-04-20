@@ -36,6 +36,12 @@
       <% end %>
     </ul>
 
+    <h3 class="text-light">Sub-Total: $<%= sprintf('%.2f', sub_total) %></h3>
+    <h3 class="text-light">PST: $<%= sprintf('%.2f', sub_total*@province.pst) %></h3>
+    <h3 class="text-light">GST: $<%= sprintf('%.2f', sub_total*@province.gst) %></h3>
+    <h3 class="text-light">HST: $<%= sprintf('%.2f', sub_total*@province.hst) %></h3>
+    <h3 class="text-light">Total: $<%= sprintf('%.2f', sub_total + (1 + sub_total*@province.pst + sub_total*@province.gst + sub_total*@province.hst)) %></h3>
+
     <h2>Address Details</h2>
     <ul class="text-light h5 mb-5 p-0" style="list-style: none;">
       <li>Address: <%= @address_details[:address] %></li>
@@ -44,11 +50,6 @@
       <li>Zip Code: <%= @address_details[:zip_code] %></li>
     </ul>
 
-    <h3 class="text-light">Sub-Total: $<%= sprintf('%.2f', sub_total) %></h3>
-    <h3 class="text-light">PST: $<%= sprintf('%.2f', sub_total*@province.pst) %></h3>
-    <h3 class="text-light">GST: $<%= sprintf('%.2f', sub_total*@province.gst) %></h3>
-    <h3 class="text-light">HST: $<%= sprintf('%.2f', sub_total*@province.hst) %></h3>
-    <h3 class="text-light">Total: $<%= sprintf('%.2f', sub_total + (1 + sub_total*@province.pst + sub_total*@province.gst + sub_total*@province.hst)) %></h3>
 
     <%= button_to 'Place Order', invoice_path, method: :get %>
     <%= button_to 'Return to Cart', cart_path, method: :get %>

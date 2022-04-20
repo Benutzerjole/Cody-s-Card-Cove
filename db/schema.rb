@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_20_060327) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_20_074814) do
   create_table "about_infos", force: :cascade do |t|
     t.text "description"
     t.string "phone_number"
@@ -83,6 +83,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_20_060327) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "address"
+    t.integer "province_id", null: false
+    t.string "city"
+    t.string "zip_code"
+    t.integer "user_id", null: false
+    t.float "gst"
+    t.float "pst"
+    t.float "hst"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["province_id"], name: "index_orders_on_province_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -124,6 +139,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_20_060327) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "orders", "provinces"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "users", "provinces"
 end
