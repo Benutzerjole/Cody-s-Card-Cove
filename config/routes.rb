@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/about/', to: "about#index"
   get '/contact/', to: "contact#index"
   get 'cart', to: "cart#index", as: "cart"
+  get "invoice", to: 'order#invoice', as: "invoice"
 
   post 'cart/add_to_cart/:id', to: 'cart#add_to_cart', as: 'add_to_cart'
   post 'cart/modify_cart_quantity/:id', to: 'cart#modify_cart_quantity', as: 'modify_cart_quantity'
