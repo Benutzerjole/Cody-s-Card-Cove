@@ -38,5 +38,9 @@ class OrderController < ApplicationController
 
   end
 
+  def index
+    @orders = current_user.orders
+  end
+
 
 end

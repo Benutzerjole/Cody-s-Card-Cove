@@ -12,6 +12,7 @@
         <%= link_to "Sign In", new_user_session_path, class: "nav-item nav-link" %>
       <% else %>
         <%= link_to "Cart (#{session["cart"] ? session["cart"].size : 0})", cart_path, class: "nav-item nav-link" %>
+        <%= link_to "Order History", order_path, class: "nav-item nav-link" %>
         <%= link_to "Edit Account", edit_user_registration_path, class: "nav-item nav-link" %>
         <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-item nav-link" %>
       <% end %>
