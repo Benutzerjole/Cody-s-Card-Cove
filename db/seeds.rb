@@ -1,6 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
+# This file should contains the record creation needed to seed the database with its default values.
+# The data can then be loaded with the bin/rails db:seed command
+# (or created alongside the database with db:setup).
 # Examples:
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
@@ -29,7 +29,6 @@ category_json_data = File.read(category_json_file)
 categories = JSON.parse(category_json_data)
 
 categories.each do |category|
-  puts("Creating #{category} category.")
   current_category = Category.find_or_create_by(name: category)
 
   current_json_file = Rails.root.join("db/json/#{category}.json")
@@ -39,7 +38,8 @@ categories.each do |category|
 
   products.each do |key, value|
     Product.create(name: key, description: value["description"], base_price: value["price"],
-                   quantity_in_stock: Faker::Number.between(from: 0, to: 100), category: current_category)
+                   quantity_in_stock: Faker::Number.between(from: 0, to: 100),
+                   category: current_category)
   end
 end
 
@@ -57,7 +57,8 @@ Province.create(name: "Yukon", gst: 0.05, pst: 0, hst: 0)
 Province.create(name: "Northwest Territories", gst: 0.05, pst: 0, hst: 0)
 Province.create(name: "Nunavut", gst: 0.05, pst: 0, hst: 0)
 
-AboutInfo.create(description:  "Cody's Card Cove is a lovely store located in Winnipeg, Manitoba. We sell trading cards of all kinds!",
+AboutInfo.create(description:  "Cody's Card Cove is a lovely store located in Winnipeg, Manitoba.
+                                We sell trading cards of all kinds!",
                  phone_number: "204-204-2042",
                  email:        "cardcove@fake.com",
                  twitter:      "www.twitter.com",

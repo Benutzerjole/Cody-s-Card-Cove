@@ -11,7 +11,7 @@ class CartController < ApplicationController
     id = params[:id].to_i
     session[:cart][id] = 1
     flash[:notice] = "Item successfully added to cart."
-    redirect_to(request.env['HTTP_REFERER'])
+    redirect_to(request.env["HTTP_REFERER"])
   end
 
   def remove_from_cart
@@ -24,9 +24,7 @@ class CartController < ApplicationController
   def modify_cart_quantity
     id = params[:id].to_s
     desired_quantity = params[:quantity].to_i
-    if desired_quantity <= 0
-      desired_quantity = 1
-    end
+    desired_quantity = 1 if desired_quantity <= 0
     session[:cart][id] = desired_quantity
     flash[:notice] = "Item quantity modified."
     redirect_to cart_path

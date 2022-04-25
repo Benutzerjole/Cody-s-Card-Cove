@@ -1,8 +1,6 @@
 class QuantityValidator < ActiveModel::Validator
   def validate(record)
-    if record.quantity <= 0
-      record.errors.add :base, "Cannot have a negative quantity."
-    end
+    record.errors.add :base, "Cannot have a negative quantity." if record.quantity <= 0
   end
 end
 
