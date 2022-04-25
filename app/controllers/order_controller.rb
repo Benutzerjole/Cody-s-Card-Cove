@@ -29,6 +29,7 @@ class OrderController < ApplicationController
     products.each do |product|
       current_product = Product.find(product[0])
       current_price = current_product.sale_price || current_product.base_price
+      current_product.update(quantity_in_stock: current_product.quantity_in_stock - product[1])
       OrderProduct.create(quantity: product[1], price: current_price, product: current_product, order: current_order)
     end
 
