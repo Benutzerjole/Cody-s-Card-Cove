@@ -1,3 +1,8 @@
-<h1 class="text-light text-center">About Us</h1>
-<%= image_tag "kamegame.jpg" %>
-<p class="my-5" style="font-size: 18px;"><%= @about.description %></p>
+<% if @about %>
+  <h1 class="text-light text-center">About Us</h1>
+  <%= image_tag "kamegame.jpg" %>
+  <p class="my-5" style="font-size: 18px;"><%= @about.description %></p>
+<% else %>
+  <h1>No about info.</h1>
+  <h2>Please run the seed file or add it in the admin dashboard.</h2>
+<% end %>

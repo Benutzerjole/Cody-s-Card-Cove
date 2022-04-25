@@ -33,6 +33,7 @@ class OrderController < ApplicationController
     end
 
     session[:cart] = {}
+    session[:address_details] = {}
     flash[:notice] = "Order with id ##{current_order.id} placed."
     redirect_to root_path
 

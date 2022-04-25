@@ -1,12 +1,17 @@
-<h1 class="text-light text-center">Contact Us</h1>
-<div style="font-size: 18px;">
-  <p class="my-5">If there is something that you want that we don't have, feel free to contact us with the information below to make a suggestion.</p>
-  <p>Email: <%= @about.email %></p>
-  <p>Phone: <%= @about.phone_number %></p>
-  <span>
-    <a href="http://<%= @about.facebook %>" class="btn btn-primary text-light">Facebook</a>
-    <a href="http://<%= @about.twitter %>" class="btn btn-primary text-light">Twitter</a>
-    <a href="http://<%= @about.instagram %>" class="btn btn-primary text-light">Instagram</a>
-  </span>
+<% if @about %>
+  <h1 class="text-light text-center">Contact Us</h1>
+  <div style="font-size: 18px;">
+    <p class="my-5">If there is something that you want that we don't have, feel free to contact us with the information below to make a suggestion.</p>
+    <p>Email: <%= @about.email %></p>
+    <p>Phone: <%= @about.phone_number %></p>
+    <span>
+      <a href="http://<%= @about.facebook %>" class="btn btn-primary text-light">Facebook</a>
+      <a href="http://<%= @about.twitter %>" class="btn btn-primary text-light">Twitter</a>
+      <a href="http://<%= @about.instagram %>" class="btn btn-primary text-light">Instagram</a>
+    </span>
 
-</div>
+  </div>
+<% else %>
+  <h1>No contact info.</h1>
+  <h2>Please run the seed file or add it in the admin dashboard.</h2>
+<% end %>
