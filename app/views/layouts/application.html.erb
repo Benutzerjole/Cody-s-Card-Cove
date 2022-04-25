@@ -20,8 +20,8 @@
 
   <body class="bg-dark text-light">
     <%= render partial: "shared/navbar" %>
-    <div class=<%if notice %> "container alert alert-success" <% end %>><%= notice %></div>
-    <div class=<%if alert %> "container alert alert-danger" <% end %>><%= alert %></div>
+    <div class=<%if notice %> "container alert alert-success"<% else %>none<% end %>><%= notice %></div>
+    <div class=<%if alert %> "container alert alert-danger"<% else %>none<% end %>><%= alert %></div>
     
     <div class="container" style="font-family: 'Roboto', sans-serif;">
       <%= yield %>
