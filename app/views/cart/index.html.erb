@@ -11,7 +11,7 @@
         <li class="bg-light border-dark p-2 my-3">
           <% current_product = Product.find(product[0])%>
           <div class="h4">
-            <%= current_product.name %>     
+            <a href="products/<%= current_product.id %>"><%= current_product.name %></a>  
           </div>
 
           <div class="h5">
