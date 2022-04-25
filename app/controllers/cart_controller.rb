@@ -23,8 +23,11 @@ class CartController < ApplicationController
 
   def modify_cart_quantity
     id = params[:id].to_s
-    print(params[:quantity])
-    session[:cart][id] = params[:quantity].to_i
+    desired_quantity = params[:quantity].to_i
+    if desired_quantity <= 0
+      desired_quantity = 1
+    end
+    session[:cart][id] = desired_quantity
     flash[:notice] = "Item quantity modified."
     redirect_to cart_path
   end
